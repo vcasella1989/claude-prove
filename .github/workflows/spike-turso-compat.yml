@@ -25,3 +25,13 @@ jobs:
         run: bun probe-1-local-engine.ts
       - name: probe 1b — bun:sqlite perf baseline
         run: bun probe-1b-bunsqlite-baseline.ts
+      - name: probe 2 — sync runtime (pull/push, offline queue, REBASE_LOCAL)
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+        run: bun probe-2-sync.ts
+      - name: probe 3 — serverless over HTTP
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+        run: bun probe-3-serverless.ts
