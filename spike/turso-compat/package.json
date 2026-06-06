@@ -1,0 +1,10 @@
+{
+  "name": "spike-turso-compat",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@tursodatabase/database": "^0.6.1",
+    "@tursodatabase/serverless": "^1.2.0",
+    "@tursodatabase/sync": "^0.6.1"
+  }
+}

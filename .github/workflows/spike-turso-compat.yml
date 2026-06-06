@@ -1,0 +1,27 @@
+# Throwaway CI leg of the Turso compat spike — linux-x64 platform matrix cell.
+# Lives only on the spike branch; delete with the branch when the spike report lands.
+name: spike-turso-compat
+
+on:
+  push:
+    branches: [spike/turso-compat]
+
+jobs:
+  probe-linux-x64:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: spike/turso-compat
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - name: install spike deps
+        run: bun install
+      - name: import surfaces load under Bun
+        run: bun probe-imports.ts
+      - name: probe 1 — local engine
+        run: bun probe-1-local-engine.ts
+      - name: probe 1b — bun:sqlite perf baseline
+        run: bun probe-1b-bunsqlite-baseline.ts
